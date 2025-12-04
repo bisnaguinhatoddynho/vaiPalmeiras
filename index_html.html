@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Painel</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .bg video {
+      position: fixed;
+      top: 70%;
+      left: 50%;
+      min-width: 120%;
+      min-height: 120%;
+      transform: translate(-50%, -55%);
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: -1;
+    }
+
+    .top-text {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: rgba(0,0,0,0.4);
+      padding: 10px 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: lowercase;
+    }
+
+    .clock {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.4);
+      padding: 10px 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .apps {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 22px;
+      background: rgba(0,0,0,0.35);
+      padding: 14px 26px;
+      border-radius: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .app {
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 5px;
+      transition: 0.2s;
+    }
+
+    .icon img {
+      width: 42px;
+      height: 42px;
+    }
+
+    .app:hover .icon {
+      transform: scale(1.12);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fundo em vídeo -->
+  <div class="bg">
+    <video autoplay muted loop playsinline>
+      <source src="/mnt/data/Download.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="overlay"></div>
+
+  <!-- Texto no topo -->
+  <div class="top-text">qual é a boa de hoje davi?</div>
+
+  <!-- Relógio -->
+  <div class="clock" id="clock">--:--:--</div>
+
+  <!-- Apps -->
+  <div class="apps">
+    <a class="app" href="https://classroom.google.com" target="_blank">
+      <div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/2875/2875394.png"></div>
+      Classroom
+    </a>
+
+    <a class="app" href="https://plural.net.br" target="_blank">
+      <div class="icon"><img src="plural-logo.png"></div>
+      Plural
+    </a>
+
+    <a class="app" href="https://instagram.com" target="_blank">
+      <div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></div>
+      Instagram
+    </a>
+
+    <a class="app" href="https://web.whatsapp.com" target="_blank">
+      <div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/733/733641.png"></div>
+      WhatsApp
+    </a>
+
+    <a class="app" href="https://drive.google.com" target="_blank">
+      <div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"></div>
+      Drive
+    </a>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById("clock").textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
